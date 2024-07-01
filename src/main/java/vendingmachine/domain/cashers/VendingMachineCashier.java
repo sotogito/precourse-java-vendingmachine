@@ -48,6 +48,16 @@ public class VendingMachineCashier {
         validator.validate(money);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Coin coin : Coin.values()) {
+            int count = cash.getOrDefault(coin, 0);
+            sb.append(coin.getAmount()).append("원 - ").append(count).append("개\n");
+        }
+        return sb.toString();
+    }
+
 
 
 

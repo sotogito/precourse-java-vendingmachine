@@ -25,12 +25,14 @@ public enum Coin {
 
     public static EnumMap<Coin, Integer> getVendingMachineCoins(int money) {
         EnumMap<Coin, Integer> coinMap = new EnumMap<>(Coin.class);
+        Coin[] coins = Coin.values();
+        Arrays.sort(coins, (a, b) -> b.getAmount() - a.getAmount()); // 큰 동전부터 정렬
 
-        while (money > 0) {
-            Coin coin = getRandomCoin();
-            if (coin.amount <= money) {
-                coinMap.put(coin, coinMap.getOrDefault(coin, 0) + 1);
-                money -= coin.amount;
+        for (Coin coin : coins) {
+            int count = money / coin.getAmount();
+            if (count > 0) {
+                coinMap.put(coin, count);
+                money -= count * coin.getAmount();
             }
         }
 

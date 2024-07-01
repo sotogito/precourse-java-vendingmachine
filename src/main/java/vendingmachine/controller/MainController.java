@@ -8,6 +8,8 @@ public class MainController {
 
     public void main(){
         VendingMachineCashier vendingMachineCashier = createVendingMachineCashier();
+
+        Output.printVendingMachineCoins(vendingMachineCashier);
     }
 
     private VendingMachineCashier createVendingMachineCashier(){
@@ -19,4 +21,6 @@ public class MainController {
         }
         return createVendingMachineCashier();
     }
+
+
 }
