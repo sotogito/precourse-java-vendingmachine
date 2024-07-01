@@ -17,6 +17,10 @@ public class ItemInventory {
         inventory -= amount;
     }
 
+    public boolean isNotInStock() {
+        return inventory <= 0;
+    }
+
     @Override
     public String toString() {
         return inventory + "";

@@ -16,6 +16,19 @@ public class Item {
         this.inventory = new ItemInventory(inventory);
     }
 
+    public String getName() {
+        return name.getName();
+    }
+
+    public int getPrice(){
+        return price.getPrice();
+    }
+
+    public boolean decreaseInventoryAndCheckStock(){
+        inventory.decreaseInventory(1);
+        return inventory.isNotInStock();
+    }
+
     @Override
     public String toString() {
         return "Product{" +
