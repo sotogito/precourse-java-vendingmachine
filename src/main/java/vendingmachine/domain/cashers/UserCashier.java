@@ -4,6 +4,7 @@ import vendingmachine.domain.Coin;
 import vendingmachine.util.validators.CashValidator;
 import vendingmachine.util.validators.UserCashValidator;
 
+import java.util.EnumMap;
 import java.util.Map;
 
 public class UserCashier {
@@ -15,6 +16,10 @@ public class UserCashier {
         //todo 유효검사
         validate(money, minItemPrice);
         this.changeCalculator = changeCalculator;
+    }
+
+    public EnumMap<Coin, Integer> getBalance(VendingMachineCashier vendingMachineCashier) {
+        return vendingMachineCashier.calculateBalance(money);
     }
 
 

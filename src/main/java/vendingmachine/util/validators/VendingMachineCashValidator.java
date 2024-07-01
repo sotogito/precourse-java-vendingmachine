@@ -13,7 +13,7 @@ public class VendingMachineCashValidator implements CashValidator{
 
     @Override
     public void validateNumberRange(int money, int min, int max) {
-        if(money < min || money > min) {
+        if(money < min || money > max) {
             throw new IllegalArgumentException(ErrorMessage.NOT_WITHIN_RANGE_VENDINGMACHINE_CASH);
         }
     }

@@ -1,11 +1,13 @@
 package vendingmachine.domain.Item_component;
 
+import vendingmachine.util.validators.ItemNameValidator;
+
 public class ItemName {
 
     private String name;
 
     public ItemName(String name) {
-
+        ItemNameValidator.validate(name);
         this.name = name;
     }
 
