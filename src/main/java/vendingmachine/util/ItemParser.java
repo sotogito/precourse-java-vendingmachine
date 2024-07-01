@@ -1,4 +1,6 @@
-package vendingmachine.domain;
+package vendingmachine.util;
+
+import vendingmachine.domain.Item;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,6 @@
 package vendingmachine.controller;
 
+import vendingmachine.domain.ItemMatcher;
 import vendingmachine.domain.Items;
 import vendingmachine.domain.cashers.UserCashier;
 import vendingmachine.domain.cashers.VendingMachineCashier;
@@ -16,8 +17,35 @@ public class MainController {
         Items items = createItems();
 
         UserCashier userCashier = createUserCashier(items.getMinAmount());
+        ItemMatcher itemMatcher = createItemMatcher(items,userCashier);
 
         System.out.println(userCashier);
+
+        Output.printUserMoney(userCashier);
+
+        userBuyItem(itemMatcher, userCashier);
+        Output.printBalanceCoin(userCashier.getBalance(vendingMachineCashier));
+
+
+    }
+
+    private ItemMatcher createItemMatcher(Items items, UserCashier userCashier) {
+        return new ItemMatcher(items, userCashier);
+    }
+
+    private void userBuyItem(ItemMatcher itemMatcher,UserCashier userCashier){
+        while (true){
+            try{
+                if(!itemMatcher.isCanMoreBuy(Input.inputUserBuyItem())){
+                    break;
+                }
+            }catch (IllegalArgumentException e){
+                Output.printError(e.getMessage());
+            }
+            Output.printUserMoney(userCashier);
+        }
+        Output.printUserMoney(userCashier);
+
     }
 
     public UserCashier createUserCashier(int minItemPrice) {

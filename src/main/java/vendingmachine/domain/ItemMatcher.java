@@ -44,6 +44,8 @@ public class ItemMatcher {
         }
         //todo 확인사항2. 최소금액이 되는지
         if(userCashier.isHaveNotBalance(foundItemPrice, minAmount)){
+            System.out.println("다음 꼐산은 불가능");
+            userCashier.updateMoney(foundItemPrice);
             return false;
         }
         userCashier.updateMoney(foundItemPrice);

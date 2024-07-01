@@ -1,10 +1,11 @@
 package vendingmachine.domain;
 
 import org.junit.jupiter.api.Test;
+import vendingmachine.util.ItemParser;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ItemParserTest {
     @Test

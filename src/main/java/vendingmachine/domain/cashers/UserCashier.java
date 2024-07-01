@@ -15,6 +15,7 @@ public class UserCashier {
 
         //todo 유효검사
         validate(money, minItemPrice);
+        this.money = money;
     }
 
     public EnumMap<Coin, Integer> getBalance(VendingMachineCashier vendingMachineCashier) {
