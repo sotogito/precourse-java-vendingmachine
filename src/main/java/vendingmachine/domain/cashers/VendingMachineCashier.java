@@ -18,6 +18,7 @@ public class VendingMachineCashier {
         cash = Coin.getVendingMachineCoins(money);
     }
 
+    //TODO 계산하는 로직은 따로 뺴는게 좋을 거 같다.
     public EnumMap<Coin, Integer> calculateBalance(int userMoney) {
         int amount = userMoney;
         EnumMap<Coin, Integer> balance = new EnumMap<>(Coin.class);
