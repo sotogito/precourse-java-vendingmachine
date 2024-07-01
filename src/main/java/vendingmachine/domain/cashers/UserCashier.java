@@ -1,6 +1,8 @@
 package vendingmachine.domain.cashers;
 
 import vendingmachine.domain.Coin;
+import vendingmachine.util.validators.CashValidator;
+import vendingmachine.util.validators.UserCashValidator;
 
 import java.util.Map;
 
@@ -8,10 +10,10 @@ public class UserCashier {
     private int money;
     private CashChangeCalculator changeCalculator;
 
-    public UserCashier(int money, CashChangeCalculator changeCalculator) {
+    public UserCashier(int money, int minItemPrice,CashChangeCalculator changeCalculator) {
 
         //todo 유효검사
-        this.money = money;
+        validate(money, minItemPrice);
         this.changeCalculator = changeCalculator;
     }
 
@@ -28,6 +30,12 @@ public class UserCashier {
 
     public int calculateBalance(int amount) {
         return money - amount;
+    }
+
+    private void validate(int money, int minItemPrice) {
+        CashValidator validator = new UserCashValidator();
+        validator.validate(money);
+        validator.validateNumberRange(money,minItemPrice,10000);
     }
 
 

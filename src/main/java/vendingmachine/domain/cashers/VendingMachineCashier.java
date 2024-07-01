@@ -1,6 +1,8 @@
 package vendingmachine.domain.cashers;
 
 import vendingmachine.domain.Coin;
+import vendingmachine.util.validators.CashValidator;
+import vendingmachine.util.validators.VendingMachineCashValidator;
 
 import java.util.EnumMap;
 
@@ -10,8 +12,13 @@ public class VendingMachineCashier {
 
     public VendingMachineCashier(int money) {
 
-        //유효검사
+        validate(money);
         cash = Coin.getVendingMachineCoins(money);
+    }
+
+    public void validate(int money){
+        CashValidator validator = new VendingMachineCashValidator();
+        validator.validate(money);
     }
 
 
