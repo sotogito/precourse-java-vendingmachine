@@ -1,11 +1,13 @@
 package vendingmachine.domain.Item_component;
 
+import vendingmachine.util.validators.InventoryValidator;
+
 public class ItemInventory {
 
     private int inventory;
 
     public ItemInventory(int inventory) {
-        //todo 유효검사
+        InventoryValidator.validate(inventory);
         this.inventory = inventory;
     }
 

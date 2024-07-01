@@ -5,7 +5,7 @@ public class ItemName {
     private String name;
 
     public ItemName(String name) {
-        //todo 유효검사
+
         this.name = name;
     }
 
