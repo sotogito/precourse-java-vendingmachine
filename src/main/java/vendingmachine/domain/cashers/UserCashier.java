@@ -11,11 +11,10 @@ public class UserCashier {
     private int money;
     private CashChangeCalculator changeCalculator;
 
-    public UserCashier(int money, int minItemPrice,CashChangeCalculator changeCalculator) {
+    public UserCashier(int money, int minItemPrice) {
 
         //todo 유효검사
         validate(money, minItemPrice);
-        this.changeCalculator = changeCalculator;
     }
 
     public EnumMap<Coin, Integer> getBalance(VendingMachineCashier vendingMachineCashier) {
@@ -45,11 +44,10 @@ public class UserCashier {
 
 
 
-    //public Map<Coin, Integer> calculateChangeCash(VendingMachineCashier vendingMachineCashier) {
-
-
-    //}
-
+    @Override
+    public String toString() {
+        return money+"";
+    }
 
 
 }
