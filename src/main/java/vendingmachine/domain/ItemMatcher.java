@@ -46,6 +46,7 @@ public class ItemMatcher {
             if(isMoreLessUserMoneyForMinimumItemPrice()){
                 return false;
             }
+            return false;
         }
 
         return true;
