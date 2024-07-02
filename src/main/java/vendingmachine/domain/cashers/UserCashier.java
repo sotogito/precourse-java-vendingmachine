@@ -12,29 +12,28 @@ public class UserCashier {
     private CashChangeCalculator changeCalculator;
 
     public UserCashier(int money, int minItemPrice) {
-
-        //todo 유효검사
         validate(money, minItemPrice);
         this.money = money;
     }
 
     public EnumMap<Coin, Integer> getBalance(VendingMachineCashier vendingMachineCashier) {
-        return vendingMachineCashier.calculateBalance(money);
+        return vendingMachineCashier.calculateChangeAndUpdateVendingMachineCoin(money);
     }
-
 
     public void updateMoney(int amount) {
-        money -= amount;
+        money = calculateBalance(amount);
     }
 
+    public int calculateBalance(int amount) {
+        return money - amount;
+    }
 
     public boolean isHaveNotBalance(int itemPrice,int miniTemPrice){
         return calculateBalance(itemPrice) < miniTemPrice;
     }
 
-
-    public int calculateBalance(int amount) {
-        return money - amount;
+    public boolean isMoreLessUserMoney(int miniTemPrice){
+        return money < miniTemPrice;
     }
 
     private void validate(int money, int minItemPrice) {
@@ -42,8 +41,6 @@ public class UserCashier {
         validator.validate(money);
         validator.validateNumberRange(money,minItemPrice,10000);
     }
-
-
 
     @Override
     public String toString() {

@@ -24,7 +24,7 @@ public class Item {
         return price.getPrice();
     }
 
-    public void decreasePrice(int amount){
+    public void decreaseInventory(int amount){
         inventory.decreaseInventory(amount);
     }
 
