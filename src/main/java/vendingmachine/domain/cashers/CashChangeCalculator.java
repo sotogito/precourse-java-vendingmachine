@@ -5,14 +5,10 @@ import vendingmachine.domain.Coin;
 import java.util.Arrays;
 import java.util.EnumMap;
 
-public class CashChangeCalculator {
-
-    //UserCash에 변수로 달아두기
-    //public static EnumMap<Coin,Integer> calculate(EnumMap<Coin,Integer> cashChange) {
-
-    //}
+public class CashChangeCalculator implements ChangeCalculator{
 
     //note VendingMachine이 가지고 있는 동전 최소 개수로 반환하기
+    @Override
     public EnumMap<Coin, Integer> calculate(int userCash,EnumMap<Coin, Integer> vendingMachineCash) {
         int amount = userCash;
         EnumMap<Coin, Integer> changeResult = new EnumMap<>(Coin.class);
