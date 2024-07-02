@@ -8,57 +8,76 @@ import java.util.Map;
 
 public class ItemMatcher {
 
-    //private CashChangeCalculator changeCalculator;
-    private UserCashier userCashier;
-    private Map<String,Item> itemList = new HashMap<>();
+    private final UserCashier userCashier;
+    private final Map<String,Item> itemList = new HashMap<>();
     private int minAmount;
+    private final Items items;
 
 
     public ItemMatcher(Items items, UserCashier userCashier) {
+        this.items = items;
         initItemMap(items);
         this.userCashier = userCashier;
         this.minAmount = items.getMinAmount();
     }
 
-    //todo while(isCanMoreBuy)
-    public boolean isCanMoreBuy(String input){
-        //todo 입력한 상품 찾기
-        /**
-         * 입력한 상품 찾기 = map에서 찾기
-         * 수량 -1 하기 = item.수량감소
-         * 사용자 금액 - 삼품 가격하기
-         *          = 유효성 검사하기 if(사용자금액!!){잔동 출력 false}
-         *
-         */
+    /**
+     * 구매를 멈춰야하는 조건
+     * 1. 구매했을 때의 남은 잔액이 최솟값보다 적을 때
+     * 2. 구매했는데 앞으로 구매할 수 있는 상품중 최소 금액이 현재 사용자의 잔액보다 많을때
+     */
 
+    public boolean isCanMoreBuy(String input) {
         Item foundItem = itemList.get(input);
-        if(foundItem == null){
+        if (foundItem == null) {
             throw new IllegalArgumentException(ErrorMessage.CANT_FIND_ITEM);
         }
-
         int foundItemPrice = foundItem.getPrice();
 
-        //note 확인사항1. 재고가 더이상 있는지
-        if(foundItem.decreaseInventoryAndCheckStock()){
-            return false;
-        }
-        //todo 확인사항2. 최소금액이 되는지
-        if(userCashier.isHaveNotBalance(foundItemPrice, minAmount)){
-            System.out.println("다음 꼐산은 불가능");
-            userCashier.updateMoney(foundItemPrice);
-            return false;
-        }
-        userCashier.updateMoney(foundItemPrice);
-        return true;
 
+        if(isHaveNotBalance(foundItemPrice)){
+            updateUserCashAndItemInventory(foundItem,foundItemPrice,1);
+            return false;
+        }
+
+        updateUserCashAndItemInventory(foundItem,foundItemPrice,1);
+        if(isNotInventory(foundItem)){
+            minAmount = items.getMinAmount();
+            if(isMoreLessUserMoneyForMinimumItemPrice()){
+                return false;
+            }
+        }
+
+        return true;
     }
 
 
+    private void updateUserCashAndItemInventory(Item item,int price, int quantity){
+        int change = userCashier.calculateBalance(price);
+        if(change<0){
+            throw new IllegalArgumentException("돈이 부족합니다.그지얌");
+        }
+        item.decreaseInventory(quantity);
+        userCashier.updateMoney(price);
+    }
 
+    private boolean isMoreLessUserMoneyForMinimumItemPrice(){
+        return userCashier.isMoreLessUserMoney(minAmount);
+    }
+
+
+    private boolean isNotInventory(Item item){
+        return item.isNotInStock();
+    }
+
+    private boolean isHaveNotBalance(int foundItemPrice){
+        return userCashier.isHaveNotBalance(foundItemPrice, minAmount);
+    }
 
     private void initItemMap(Items items){
-        for(Item itemCom : items.getItems()){
-            itemList.put(itemCom.getName(),itemCom);
+        for(Item itemComponent : items.getItems()){
+            itemList.put(itemComponent.getName(),itemComponent);
         }
     }
+
 }
