@@ -20,8 +20,8 @@ public class ItemParser {
     }
 
     private static Item createItem(String[] itemData){
-        String name = itemData[0];
-        int price = Integer.parseInt(itemData[1]);
+        String name = itemData[0].trim();
+        int price = Integer.parseInt(itemData[1]); //fixme 여기도 다 바꿔야함
         int quantity = Integer.parseInt(itemData[2]);
 
         return new Item(name, price, quantity);
@@ -35,9 +35,6 @@ public class ItemParser {
             data = getDeleteBracketsData(data); // 이름,수량,가격
             String[] attributes = getSplitCommaData(data); //이름 수량 가격
 
-            if (attributes.length != 3) {
-                throw new IllegalArgumentException("[이름, 가격, 수량]대로 3가지 요소를 적어주세요");
-            }
             results[i] = attributes;
         }
 
@@ -45,26 +42,43 @@ public class ItemParser {
     }
 
     private static String[] getSplitCommaData(String data){
-        try{
-            return data.split(",");
-        }catch (IllegalArgumentException e){
-            throw new IllegalArgumentException(", 콤마로 이름, 가격, 수량을 구분해주세요.");
+        String[] attributes = data.split(",");
+        if (attributes.length != 3) {
+            throw new IllegalArgumentException(", 콤마로 이름, 가격, 수량 3가지 요소를 구분해주세요.\n");
         }
+        return attributes;
     }
 
     private static String getDeleteBracketsData(String data){
-        try{
+        if (data.startsWith("[") && data.endsWith("]")) {
             return data.replace("[", "").replace("]", "");
-        }catch (IllegalArgumentException e){
-            throw new IllegalArgumentException("대괄호로 [이름,가격, 수량]을 감싸주세요");
+        } else {
+            throw new IllegalArgumentException("대괄호로 [이름, 가격, 수량]을 감싸주세요.");
         }
     }
 
     private static String[] getSplitBySemicolonData(String data) throws IllegalArgumentException{
-        try{
-            return data.split(";");
-        }catch (IllegalArgumentException e){
-            throw new IllegalArgumentException("세미크론으로 아이템을 구분해주세요.");
+        String[] items = data.split(";");
+
+        for(String item : items) {
+            int leftBracketCount = countOccurrences(item, '[');
+            int rightBracketCount = countOccurrences(item, ']');
+
+            if(leftBracketCount > 1 || rightBracketCount > 1) {
+                throw new IllegalArgumentException("세미콜론으로 아이템을 구분해주세요.");
+            }
         }
+        return items;
+    }
+
+
+    private static int countOccurrences(String str, char ch) {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ch) {
+                count++;
+            }
+        }
+        return count;
     }
 }

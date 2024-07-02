@@ -1,4 +1,4 @@
-package vendingmachine.domain.cashers;
+package vendingmachine.domain.cashers.calculators;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import vendingmachine.domain.Coin;

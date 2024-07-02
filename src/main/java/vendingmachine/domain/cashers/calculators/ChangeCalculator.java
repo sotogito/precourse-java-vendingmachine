@@ -1,4 +1,4 @@
-package vendingmachine.domain.cashers;
+package vendingmachine.domain.cashers.calculators;
 
 import vendingmachine.domain.Coin;
 

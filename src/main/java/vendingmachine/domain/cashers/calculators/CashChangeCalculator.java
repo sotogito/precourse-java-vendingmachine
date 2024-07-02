@@ -1,11 +1,11 @@
-package vendingmachine.domain.cashers;
+package vendingmachine.domain.cashers.calculators;
 
 import vendingmachine.domain.Coin;
 
 import java.util.Arrays;
 import java.util.EnumMap;
 
-public class CashChangeCalculator implements ChangeCalculator{
+public class CashChangeCalculator implements ChangeCalculator {
 
     //note VendingMachine이 가지고 있는 동전 최소 개수로 반환하기
     @Override
