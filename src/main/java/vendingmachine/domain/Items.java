@@ -1,13 +1,15 @@
 package vendingmachine.domain;
 
-import java.util.List;
-import java.util.Optional;
+import vendingmachine.util.validators.ItemNameValidator;
+
+import java.util.*;
 
 public class Items {
 
-    private List<Item> items;
+    private final List<Item> items;
 
     public Items(List<Item> items) {
+        ItemNameValidator.hasDuplicates(items);
         this.items = items;
     }
 
@@ -15,8 +17,10 @@ public class Items {
         return items;
     }
 
+
     public int getMinAmount() {
         return items.stream()
+                .filter(item -> !item.isNotInStock()) // 재고가 있는 경우만 처리
                 .mapToInt(Item::getPrice) // Item 객체의 price 값을 int 스트림으로 변환
                 .min() // 최소값 찾기
                 .orElse(-1); // 값이 없으면 -1 반환
@@ -31,4 +35,5 @@ public class Items {
         }
         return builder.toString();
     }
+
 }

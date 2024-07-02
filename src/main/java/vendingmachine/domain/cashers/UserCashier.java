@@ -9,7 +9,6 @@ import java.util.Map;
 
 public class UserCashier {
     private int money;
-    private CashChangeCalculator changeCalculator;
 
     public UserCashier(int money, int minItemPrice) {
         validate(money, minItemPrice);

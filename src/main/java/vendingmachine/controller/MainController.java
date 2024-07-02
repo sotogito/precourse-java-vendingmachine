@@ -1,11 +1,15 @@
 package vendingmachine.controller;
 
+import vendingmachine.domain.Item;
 import vendingmachine.domain.ItemMatcher;
 import vendingmachine.domain.Items;
 import vendingmachine.domain.cashers.UserCashier;
 import vendingmachine.domain.cashers.VendingMachineCashier;
+import vendingmachine.util.ItemParser;
 import vendingmachine.view.Input;
 import vendingmachine.view.Output;
+
+import java.util.List;
 
 public class MainController {
 
@@ -15,6 +19,7 @@ public class MainController {
         Output.printVendingMachineCoins(vendingMachineCashier);
 
         Items items = createItems();
+
 
         UserCashier userCashier = createUserCashier(items.getMinAmount());
         ItemMatcher itemMatcher = createItemMatcher(items,userCashier);
@@ -62,8 +67,18 @@ public class MainController {
     public Items createItems(){
         while (true) {
             try {
-                return new Items(Input.inputVendingMachineItem());
+                return new Items(createItemList());
             } catch (IllegalArgumentException e) {
+                Output.printError(e.getMessage());
+            }
+        }
+    }
+
+    private List<Item> createItemList(){
+        while (true){
+            try{
+                return ItemParser.parseProducts(Input.inputVendingMachineItem());
+            }catch (IllegalArgumentException e){
                 Output.printError(e.getMessage());
             }
         }
@@ -75,7 +90,6 @@ public class MainController {
                 return new VendingMachineCashier(Input.inputVendingMachineCash());
             }catch (IllegalArgumentException e){
                 Output.printError(e.getMessage());
-
             }
         }
     }

@@ -18,9 +18,9 @@ public class Input {
         }
     }
 
-    public static List<Item> inputVendingMachineItem(){
+    public static String inputVendingMachineItem(){
         System.out.println("상품명과 가격, 수량을 입력해 주세요.");
-        return ItemParser.parseProducts(Console.readLine());
+        return Console.readLine().trim();
     }
 
     public static int inputUserMoney(){
@@ -34,7 +34,7 @@ public class Input {
 
     public static String inputUserBuyItem(){
         System.out.println("구매할 상품명을 입력해 주세요.");
-        return Console.readLine();
+        return Console.readLine().trim();
     }
 
 
