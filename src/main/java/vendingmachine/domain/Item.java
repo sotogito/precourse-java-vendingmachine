@@ -24,6 +24,14 @@ public class Item {
         return price.getPrice();
     }
 
+    public void decreasePrice(int amount){
+        inventory.decreaseInventory(amount);
+    }
+
+    public boolean isNotInStock(){
+        return inventory.isNotInStock();
+    }
+
     //todo 나누기
     public boolean decreaseInventoryAndCheckStock(){
         inventory.decreaseInventory(1);
