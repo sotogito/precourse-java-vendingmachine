@@ -6,9 +6,9 @@ import vendingmachine.domain.Item_component.ItemPrice;
 
 public class Item {
 
-    private ItemName name;
-    private ItemPrice price;
-    private ItemInventory inventory;
+    private final ItemName name;
+    private final ItemPrice price;
+    private final ItemInventory inventory;
 
     public Item(String name, int price, int inventory) {
         this.name = new ItemName(name);
@@ -24,6 +24,7 @@ public class Item {
         return price.getPrice();
     }
 
+    //todo 나누기
     public boolean decreaseInventoryAndCheckStock(){
         inventory.decreaseInventory(1);
         return inventory.isNotInStock();
