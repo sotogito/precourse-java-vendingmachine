@@ -4,6 +4,8 @@ import vendingmachine.domain.Item_component.ItemInventory;
 import vendingmachine.domain.Item_component.ItemName;
 import vendingmachine.domain.Item_component.ItemPrice;
 
+import java.util.Objects;
+
 public class Item {
 
     private final ItemName name;
@@ -46,4 +48,19 @@ public class Item {
                 ", quantity=" + inventory +
                 '}';
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return Objects.equals(name.getName(), item.name.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name.getName());
+    }
+
 }
