@@ -33,3 +33,11 @@
    1. userCash.getBalance()
    2. calculate
 2. calculate에서 get해오기?
+
+---
+### 리팩토링
+1. VendingMachine Coin 리스트 랜덤으로 가져오는 기능 인터페이스?
+2. CashChangeCalculator 활용하기
+3. ItemMatcher 로직 리팩토링
+4. ItemParser 이해하기
+5. 래덤 동전 리스트, 최소 동전 반환 이해하기
