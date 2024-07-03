@@ -17,6 +17,15 @@ public class Items {
         return items;
     }
 
+    public Item findItem(String itemName) {
+        for (Item item : items) {
+            if (item.getName().equals(itemName)) {
+                return item;
+            }
+        }
+        throw new IllegalArgumentException("찾는 물품이 없어요");
+    }
+
 
     public int getMinAmount() {
         return items.stream()
