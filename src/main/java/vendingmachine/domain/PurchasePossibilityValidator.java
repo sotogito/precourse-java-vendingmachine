@@ -3,7 +3,7 @@ package vendingmachine.domain;
 import vendingmachine.domain.product.Item;
 import vendingmachine.domain.product.Items;
 
-public class PurchasePossibilityValidator {
+public class PurchasePossibilityValidator implements PurchaseValidator{
     private final Items items;
     private final UserCashier userCashier;
 
@@ -14,7 +14,19 @@ public class PurchasePossibilityValidator {
 
     public boolean canNotContinueBuying(Item item) {
         int minimumItemPrice = items.getMinimumItemPrice();
-        return item.isOutOfStock() || userCashier.isLessAmountThanMinimumItemPrice(minimumItemPrice);
+        return isOUtOfStock(item) || isLessAmountThanMinimumItemPrice(userCashier,minimumItemPrice);
     }
+
+    @Override
+    public boolean isOUtOfStock(Item item){
+        return item.isOutOfStock();
+    }
+
+
+    @Override
+    public boolean  isLessAmountThanMinimumItemPrice(UserCashier userCashier, int minItemPrice){
+        return userCashier.isLessAmountThanMinimumItemPrice(minItemPrice);
+    }
+
 
 }
