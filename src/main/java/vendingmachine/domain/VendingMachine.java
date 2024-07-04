@@ -1,5 +1,7 @@
 package vendingmachine.domain;
 
+import vendingmachine.util.validator.CashValidator;
+
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +16,7 @@ public class VendingMachine {
     private final EnumMap<Coin,Integer> amountCoins;
 
     public VendingMachine(int amount) {
+        CashValidator.validate(amount);
         this.amount = amount;
         this.amountCoins = Coin.getVendingMachineRandomCoinList(amount);
     }
