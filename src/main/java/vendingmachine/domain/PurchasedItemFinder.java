@@ -11,12 +11,12 @@ import vendingmachine.domain.product.Items;
 public class PurchasedItemFinder {
     private final Items items;
     private final UserCashier userCashier;
-    private final int minimumItemPrice;
+    private final PurchasePossibilityValidator purchaseValidator;
 
     public PurchasedItemFinder(Items items, UserCashier userCashier) {
         this.items = items;
         this.userCashier = userCashier;
-        this.minimumItemPrice = items.getMinimumItemPrice();
+        this.purchaseValidator = new PurchasePossibilityValidator(items, userCashier);
     }
 
     public boolean isQuitBuying(String itemName){
@@ -26,13 +26,7 @@ public class PurchasedItemFinder {
         userCashier.decreaseAmountAsPriceOfItem(itemPrice);
         boughtItem.decreaseStock(1);
 
-        //todo 따로 클래스로 뺴ㅑ기
-        if(boughtItem.isOutOfStock() ||
-                userCashier.isLessAmountThanMinimumItemPrice(minimumItemPrice)){
-            return true;
-        }
-
-        return false;
+        return purchaseValidator.canNotContinueBuying(boughtItem);
     }
 
     private Item findPurchasedItems(String itemName) {

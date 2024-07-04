@@ -9,7 +9,7 @@ import camp.nextstep.edu.missionutils.Randoms;
  * CoinMap 반환
  */
 
-public enum Coin {
+public enum Coin{
     COIN_500(500),
     COIN_100(100),
     COIN_50(50),
@@ -41,6 +41,8 @@ public enum Coin {
         }
         return coinList;
     }
+
+
 
     public static EnumMap<Coin, Integer> initCoinEnumMap() {
         EnumMap<Coin, Integer> coinList = new EnumMap<>(Coin.class);
