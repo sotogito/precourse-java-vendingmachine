@@ -1,5 +1,7 @@
 package vendingmachine.domain.product;
 
+import vendingmachine.util.validator.ItemNameValidator;
+
 import java.util.List;
 
 /**
@@ -12,6 +14,7 @@ public class Items {
     private List<Item> items;
 
     public Items(List<Item> items) {
+        ItemNameValidator.validateNoDuplicates(items);
         this.items = items;
     }
 
@@ -33,5 +36,16 @@ public class Items {
         }
         return minPrice;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for (Item item : items) {
+            builder.append(item.toString());
+        }
+        return builder.toString();
+    }
+
+
 
 }

@@ -1,5 +1,11 @@
 package vendingmachine.util.validator;
 
+import vendingmachine.domain.product.Item;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class ItemNameValidator {
 
     private static final int ITEM_NAME_MAX_LENGTH = 25;
@@ -7,6 +13,15 @@ public class ItemNameValidator {
     public static void validate(String itemName) {
         validateNotEmpty(itemName);
         validateStringLength(itemName);
+    }
+
+    public static void validateNoDuplicates(List<Item> items){
+        Set<Item> set = new HashSet<>();
+        for (Item item : items) {
+            if (!set.add(item)) {
+                throw new IllegalArgumentException("중복된 상품 있어요.");
+            }
+        }
     }
 
     private static void validateNotEmpty(String name) {
