@@ -1,21 +1,21 @@
-package vendingmachine.domain;
-
-import vendingmachine.domain.product.Item;
-import vendingmachine.domain.product.Items;
+package vendingmachine.domain.product;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ItemParser {
 
+
     /*
     public static void main(String[] args) {
-        Items items = parseItems("[,1500,5ㅈ4];[사이다,1000,10]");
+        Items items = parseItems("[사이다,1500,5];[사이다,1000,10]");
 
         System.out.println(items);
     }
 
      */
+
+
 
     public static Items parseItems(String input) {
         if (input == null || input.isEmpty()) {

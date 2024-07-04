@@ -32,8 +32,8 @@ public class Item {
         return name.getName();
     }
 
-    public void decreaseStock(){
-        stock.decreaseStock(1);
+    public void decreaseStock(int count){
+        stock.decreaseStock(count);
     }
 
     //note 더 구매 가능한지 조건

@@ -1,10 +1,7 @@
 package vendingmachine.domain;
 
 import org.junit.jupiter.api.Test;
-import vendingmachine.domain.product.Item;
-import vendingmachine.domain.product.Items;
-
-import java.util.EnumMap;
+import vendingmachine.domain.product.ItemParser;
 
 import static org.junit.jupiter.api.Assertions.*;
 
