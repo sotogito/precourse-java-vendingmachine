@@ -27,7 +27,7 @@ public enum Coin {
 
 
     public static EnumMap<Coin, Integer> getVendingMachineRandomCoinList(int amount) {
-        EnumMap<Coin, Integer> coinList = new EnumMap<>(Coin.class);
+        EnumMap<Coin, Integer> coinList = initCoinEnumMap();
 
         Coin[] coins = Coin.values();
 
@@ -38,6 +38,14 @@ public enum Coin {
                 coinList.put(coin, coinList.getOrDefault(coin, 0) + 1);
                 amount -= coin.amount;
             }
+        }
+        return coinList;
+    }
+
+    public static EnumMap<Coin, Integer> initCoinEnumMap() {
+        EnumMap<Coin, Integer> coinList = new EnumMap<>(Coin.class);
+        for (Coin coin : Coin.values()) {
+            coinList.put(coin, 0);
         }
         return coinList;
     }
