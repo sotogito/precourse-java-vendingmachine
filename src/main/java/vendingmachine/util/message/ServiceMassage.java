@@ -8,8 +8,9 @@ public class ServiceMassage {
     public final static String INPUT_PURCHASE_ITEM_NAME = "구매할 상품명을 입력해 주세요.\n";
 
 
-    public final static String PRINT_VENDINGMACHINE_COINS = "자판기가 보유한 동전\n";
+    public final static String PRINT_VENDINGMACHINE_COINS = "\n자판기가 보유한 동전";
     public final static String PRINT_USER_BALANCE = "투입 금액: %d원\n";
+    public final static String PRINT_COINS = "%d원 - %d개\n";
 
     public final static String PRINT_CHANGE = "잔돈\n";
 }

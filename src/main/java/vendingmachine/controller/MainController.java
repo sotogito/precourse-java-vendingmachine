@@ -7,8 +7,7 @@ import vendingmachine.view.Output;
 public class MainController {
     public void main(){
         VendingMachine vendingMachine = createVendingMachine();
-        System.out.println(vendingMachine);
-        
+        printVendingMachineCoins(vendingMachine);
     }
 
     private VendingMachine createVendingMachine(){
@@ -21,6 +20,12 @@ public class MainController {
             }
         }
     }
+
+    private void printVendingMachineCoins(VendingMachine vendingMachine){
+        Output.printVendingMachineCoins(vendingMachine);
+    }
+
+
 
 
 

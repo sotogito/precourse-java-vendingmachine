@@ -26,6 +26,7 @@ public class PurchasedItemFinder {
         userCashier.decreaseAmountAsPriceOfItem(itemPrice);
         boughtItem.decreaseStock(1);
 
+        //todo 따로 클래스로 뺴ㅑ기
         if(boughtItem.isOutOfStock() ||
                 userCashier.isLessAmountThanMinimumItemPrice(minimumItemPrice)){
             return true;

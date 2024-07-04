@@ -1,5 +1,6 @@
 package vendingmachine.domain;
 
+import vendingmachine.util.message.ServiceMassage;
 import vendingmachine.util.validator.CashValidator;
 
 import java.util.EnumMap;
@@ -42,5 +43,15 @@ public class VendingMachine {
         }
 
         return userChange;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for (Map.Entry<Coin, Integer> entry : amountCoins.entrySet()) {
+            String printout = String.format(ServiceMassage.PRINT_COINS,entry.getKey().getAmount(),entry.getValue());
+            builder.append(printout);
+        }
+        return builder.toString();
     }
 }
