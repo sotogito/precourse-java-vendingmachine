@@ -11,8 +11,8 @@ public class VendingMachine {
     private final int amount;
     private final EnumMap<Coin,Integer> amountCoins;
 
-    public VendingMachine(int amount, EnumMap<Coin, Integer> amountCoins) {
+    public VendingMachine(int amount) {
         this.amount = amount;
-        this.amountCoins = amountCoins;
+        this.amountCoins = Coin.getVendingMachineRandomCoinList(amount);
     }
 }
