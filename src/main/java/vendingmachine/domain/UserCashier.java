@@ -1,5 +1,7 @@
 package vendingmachine.domain;
 
+import vendingmachine.util.message.ErrorMessage;
+
 import java.util.EnumMap;
 
 /**
@@ -24,6 +26,9 @@ public class UserCashier {
 
     public void decreaseAmountAsPriceOfItem(int itemPrice) {
         //todo 여기서에 구매할 수 있는지 판단?
+        if(amount < itemPrice){
+            throw new IllegalArgumentException(ErrorMessage.INSUFFICIENT_FUNDS_EXCEPTION);
+        }
         amount -= itemPrice;
     }
 

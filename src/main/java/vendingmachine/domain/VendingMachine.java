@@ -19,6 +19,7 @@ public class VendingMachine {
     }
 
     //note 잔돈 반환
+    //TODO 따로 계산 클래스를 만들어도 좋을 거 같다.
     public EnumMap<Coin, Integer> getUserChange(int userAmount) {
         EnumMap<Coin, Integer> userChange = new EnumMap<>(Coin.class);
         Map<Coin, Integer> tempAmountCoins = new HashMap<>(amountCoins);
