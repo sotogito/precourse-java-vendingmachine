@@ -15,7 +15,7 @@ public class ItemStockValidator {
     private static void validateNumberInRange(int number) {
         if(number < MIN || number > MAX) {
             throw new IllegalArgumentException(
-                    String.format("상품 등록 개수는 최소 %d개 부터 %d개 입니다.", MIN, MAX)
+                    String.format("상품 등록 개수는 최소 %d개 부터 %d개 입니다.\n", MIN, MAX)
             );
         }
     }

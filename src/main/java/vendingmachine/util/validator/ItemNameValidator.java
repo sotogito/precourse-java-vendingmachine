@@ -19,20 +19,20 @@ public class ItemNameValidator {
         Set<Item> set = new HashSet<>();
         for (Item item : items) {
             if (!set.add(item)) {
-                throw new IllegalArgumentException("중복된 상품 있어요.");
+                throw new IllegalArgumentException("중복된 상품 있어요.\n");
             }
         }
     }
 
     private static void validateNotEmpty(String name) {
         if(name == null || name.isEmpty()){
-            throw new IllegalArgumentException("상품 이름이 비어있습니다.");
+            throw new IllegalArgumentException("상품 이름이 비어있습니다.\n");
         }
     }
 
     private static void validateStringLength(String name){
         if(name.length() > ITEM_NAME_MAX_LENGTH){
-            throw new IllegalArgumentException("상품 이름은 25자까지 입력 가능합니다.");
+            throw new IllegalArgumentException("상품 이름은 25자까지 입력 가능합니다.\n");
         }
     }
 }

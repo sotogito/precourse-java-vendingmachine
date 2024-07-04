@@ -22,7 +22,7 @@ public class ItemPriceValidator {
     private static void validateNumberInRange(int number) {
         if(number < MIN || number > MAX) {
             throw new IllegalArgumentException(
-                    String.format("금액은 최소 %d원 부터 %d원 입니다.", MIN, MAX)
+                    String.format("금액은 최소 %d원 부터 %d원 입니다.\n", MIN, MAX)
             );
         }
     }
