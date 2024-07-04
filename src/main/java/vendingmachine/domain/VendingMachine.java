@@ -38,9 +38,6 @@ public class VendingMachine {
             }
         }
 
-        if (userAmount > 0) {
-            throw new IllegalArgumentException("The vending machine cannot provide the exact change for the user amount.");
-        }
 
         return userChange;
     }

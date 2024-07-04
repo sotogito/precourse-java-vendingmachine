@@ -1,5 +1,7 @@
 package vendingmachine.controller;
 
+import vendingmachine.domain.PurchasedItemFinder;
+import vendingmachine.domain.UserCashier;
 import vendingmachine.domain.VendingMachine;
 import vendingmachine.domain.product.Item;
 import vendingmachine.domain.product.ItemParser;
@@ -13,7 +15,49 @@ public class MainController {
         printVendingMachineCoins(vendingMachine);
 
         Items items = createItems();
-        System.out.println(items);
+        UserCashier userCashier = createUserCashier();
+        PurchasedItemFinder finder = createPurchasedItemFinder(items, userCashier);
+
+        userPurchaseLoop(finder,userCashier);
+
+        Output.printUserBalance(userCashier);
+        printUserChange(userCashier,vendingMachine);
+
+    }
+
+    private void userPurchaseLoop(PurchasedItemFinder finder,UserCashier userCashier){
+        /**
+         * 투입금액 출력
+         * 구매상품 입력받기
+         *
+         */
+        while (true){
+            try{
+                Output.printUserBalance(userCashier);
+                if(finder.isQuitBuying(Input.inputPurchaseItem()))
+                    return;
+            }catch (IllegalArgumentException e){
+                Output.printError(e.getMessage());
+            }
+        }
+    }
+
+    private void printUserChange(UserCashier userCashier,VendingMachine vendingMachine){
+        Output.printUserChange(userCashier.getChange(vendingMachine));
+    }
+
+    private PurchasedItemFinder createPurchasedItemFinder(Items items, UserCashier userCashier){
+        return new PurchasedItemFinder(items, userCashier);
+    }
+
+    private UserCashier createUserCashier(){
+        while (true){
+            try {
+                return new UserCashier(Input.inputUserAmount());
+            }catch (IllegalArgumentException e){
+                Output.printError(e.getMessage());
+            }
+        }
     }
 
     private VendingMachine createVendingMachine(){

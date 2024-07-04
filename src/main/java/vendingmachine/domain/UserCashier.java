@@ -1,6 +1,7 @@
 package vendingmachine.domain;
 
 import vendingmachine.util.message.ErrorMessage;
+import vendingmachine.util.message.ServiceMassage;
 import vendingmachine.util.validator.CashValidator;
 
 import java.util.EnumMap;
@@ -37,6 +38,12 @@ public class UserCashier {
     public boolean isLessAmountThanMinimumItemPrice(int minimumItemPrice) {
         return amount < minimumItemPrice;
     }
+
+    @Override
+    public String toString() {
+        return String.format(ServiceMassage.PRINT_USER_BALANCE, amount);
+    }
+
 
 
 }

@@ -13,7 +13,7 @@ public class PurchasedItemFinder {
     private final UserCashier userCashier;
     private final int minimumItemPrice;
 
-    public PurchasedItemFinder(Items items, UserCashier userCashier, int minimumItemPrice) {
+    public PurchasedItemFinder(Items items, UserCashier userCashier) {
         this.items = items;
         this.userCashier = userCashier;
         this.minimumItemPrice = items.getMinimumItemPrice();

@@ -18,4 +18,18 @@ public class Input {
         System.out.print(ServiceMassage.INPUT_REGISTER_ITEMS);
         return Console.readLine();
     }
+
+    public static int inputUserAmount(){
+        System.out.print(ServiceMassage.INPUT_USER_AMOUNT);
+        try{
+            return Integer.parseInt(Console.readLine());
+        }catch (NumberFormatException e){
+            throw new NumberFormatException(ErrorMessage.ONLY_NUMBER);
+        }
+    }
+
+    public static String inputPurchaseItem(){
+        System.out.print(ServiceMassage.INPUT_PURCHASE_ITEM_NAME);
+        return Console.readLine();
+    }
 }
