@@ -30,8 +30,10 @@ public class Items {
     public int getMinimumItemPrice(){
         int minPrice = Integer.MAX_VALUE;
         for (Item item : items) {
-            if (item.getPrice() < minPrice) {
-                minPrice = item.getPrice();
+            if(!item.isOutOfStock()){
+                if (item.getPrice() < minPrice) {
+                    minPrice = item.getPrice();
+                }
             }
         }
         return minPrice;
@@ -45,7 +47,5 @@ public class Items {
         }
         return builder.toString();
     }
-
-
 
 }

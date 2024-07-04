@@ -16,7 +16,6 @@ public class ItemParser {
      */
 
 
-
     public static Items parseItems(String input) {
         if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException("입력된 상품이 없습니다.\n");
@@ -45,4 +44,5 @@ public class ItemParser {
 
         return new Items(itemList);
     }
+
 }

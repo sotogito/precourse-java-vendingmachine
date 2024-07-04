@@ -22,15 +22,9 @@ public class MainController {
 
         Output.printUserBalance(userCashier);
         printUserChange(userCashier,vendingMachine);
-
     }
 
     private void userPurchaseLoop(PurchasedItemFinder finder,UserCashier userCashier){
-        /**
-         * 투입금액 출력
-         * 구매상품 입력받기
-         *
-         */
         while (true){
             try{
                 Output.printUserBalance(userCashier);
@@ -84,10 +78,5 @@ public class MainController {
     private void printVendingMachineCoins(VendingMachine vendingMachine){
         Output.printVendingMachineCoins(vendingMachine);
     }
-
-
-
-
-
 
 }
