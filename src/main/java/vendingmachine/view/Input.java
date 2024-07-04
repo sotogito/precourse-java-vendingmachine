@@ -13,4 +13,9 @@ public class Input {
             throw new NumberFormatException(ErrorMessage.ONLY_NUMBER);
         }
     }
+
+    public static String inputRegisterItem(){
+        System.out.print(ServiceMassage.INPUT_REGISTER_ITEMS);
+        return Console.readLine();
+    }
 }
