@@ -1,0 +1,13 @@
+- VendingMachine :  coin 리스트를 가지고 있음
+- item : 상품 하나 - 수량 감소, 가격 반환을함
+  - ItemName : 상품 이름 , 유효검사
+  - ItemStock : 수량, 유효검사
+  - ItemPrice : 가격, 유효검사
+- Items : List<Item>을 가지고 상품을 조회함, 최소,최대 상품 가격 반환
+- InputItemFinder : 입력된 상품을 찾음
+    - Items : String을 입력하면 Items 에서 Item을 가져옴
+    - UserCashier : Item의 수량을 줄이고 사용자의 잔돈을 감소함
+    - 더이상 구매할 수 있는지 판단함 - 따로 클래스 뺴도 될듯
+    
+- UserCashier : 사용자의 돈을 관리함
+- ChangeCalculator : 잔돈을 계산함
