@@ -1,5 +1,6 @@
 package vendingmachine.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import vendingmachine.util.message.ServiceMassage;
 import vendingmachine.util.validator.CashValidator;
 
@@ -9,37 +10,41 @@ import java.util.Map;
 
 /**
  * 자판기 금액
- * 자판기 동전 리스트
+ * 자판기 동전 리스트ss
  */
 
-public class VendingMachine {
+public class VendingMachine implements ChangeCalculator{
     private final int amount;
     private final EnumMap<Coin,Integer> amountCoins;
 
     public VendingMachine(int amount) {
         CashValidator.validate(amount);
         this.amount = amount;
-        this.amountCoins = Coin.getVendingMachineRandomCoinList(amount);
+        this.amountCoins = getChange(amount);
+
     }
 
-    //note 잔돈 반환
-    //TODO 따로 계산 클래스를 만들어도 좋을 거 같다.
-    public EnumMap<Coin, Integer> getUserChange(int userAmount) {
-        EnumMap<Coin, Integer> userChange = new EnumMap<>(Coin.class);
-        Map<Coin, Integer> tempAmountCoins = new HashMap<>(amountCoins);
+    @Override
+    public EnumMap<Coin, Integer> getChange(int amount){
+        EnumMap<Coin, Integer> coinList = Coin.initCoinEnumMap();
 
         Coin[] coins = Coin.values();
 
-        for (Coin coin : coins) {
-            while (userAmount >= coin.getAmount() && tempAmountCoins.getOrDefault(coin, 0) > 0) {
-                userChange.put(coin, userChange.getOrDefault(coin, 0) + 1);
-                tempAmountCoins.put(coin, tempAmountCoins.get(coin) - 1);
-                userAmount -= coin.getAmount();
+        while (amount > 0) {
+            int randomIndex = Randoms.pickNumberInRange(0, coins.length-1);
+            Coin coin = coins[randomIndex];
+            if (coin.getAmount() <= amount) {
+                coinList.put(coin, coinList.getOrDefault(coin, 0) + 1);
+                amount -= coin.getAmount();
             }
         }
+        return coinList;
 
+    }
 
-        return userChange;
+    public EnumMap<Coin, Integer> getUserChange(int userAmount) {
+        ChangeCalculator changeCalculator = new UserChangeCalculator(amountCoins);
+        return changeCalculator.getChange(userAmount);
     }
 
     @Override
